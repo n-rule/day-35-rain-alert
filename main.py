@@ -14,8 +14,18 @@ params = {
 pull = requests.get(ONE_CALL_API, params)
 pull.raise_for_status()
 data = pull.json()
-print(data)
 
+for hour in range(12):
+    if data['hourly'][hour]['weather'][0]['id'] > 700:
+        will_rain = True
+
+# SLICING METHOD
+
+weather_slice = data['hourly'][:12]['weather'][0]['id']
+
+
+if will_rain:
+    print('Bring an umbrella')
 
 
 # lat={lat}&lon={lon}&exclude={part}&appid={API key}
